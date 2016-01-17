@@ -12,10 +12,12 @@ var app = express();
 var server = require('http').Server(app);
 
 // HELPERS
-var Timeout = require('./scripts/helpers/commonjs/Timeout');
+var Timer = require('./src/timerjs/Timer');
 
 
-app.io = require('socket.io')(server, {log: true});
+app.io = require('socket.io')(server, {
+  log: true
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -33,9 +35,9 @@ app.use('/users', users);
 
 /// catch 404 and forwarding to error handler
 app.use(function(req, res, next) {
-    var err = new Error('Not Found');
-    err.status = 404;
-    next(err);
+  var err = new Error('Not Found');
+  err.status = 404;
+  next(err);
 });
 
 /// error handlers
@@ -43,53 +45,58 @@ app.use(function(req, res, next) {
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
-    app.use(function(err, req, res, next) {
-        res.status(err.status || 500);
-        res.render('error', {
-            message: err.message,
-            error: err
-        });
+  app.use(function(err, req, res, next) {
+    res.status(err.status || 500);
+    res.render('error', {
+      message: err.message,
+      error: err
     });
+  });
 }
 
 // production error handler
 // no stacktraces leaked to user
 app.use(function(err, req, res, next) {
-    res.status(err.status || 500);
-    res.render('error', {
-        message: err.message,
-        error: {}
-    });
+  res.status(err.status || 500);
+  res.render('error', {
+    message: err.message,
+    error: {}
+  });
 });
 
 /**
-* GAME OPTIONS
-*/
+ * GAME OPTIONS
+ */
 var
-  gameTurnTime =  1000 * 10 * 1,
+  gameTurnTime = {
+    hours: 0,
+    minutes: 1,
+    seconds: 0,
+    milliseconds: 0
+  },
   gameTimer,
   gameOptions,
   playerPlays,
   letterOptions = "abcdefghijklmnopqrstuvwxyz",
   currentLetter;
 
-app.io.on('connection', function(socket){
+app.io.on('connection', function(socket) {
   console.log('a user connected');
   console.log(socket.id);
   app.io.emit('chat message', socket.id + "is now online!");
 
-  socket.on('disconnect', function(){
+  socket.on('disconnect', function() {
     console.log('user disconnected');
     app.io.emit('chat message', socket.id + "is now offline!");
   });
 
-  socket.on('chat message', function(msg){
+  socket.on('chat message', function(msg) {
     console.log(msg);
     console.log('message: ' + msg);
-    app.io.emit('chat message', this.id + " said: "+msg);
+    app.io.emit('chat message', this.id + " said: " + msg);
   });
 
-  socket.on('game result', function(msg){
+  socket.on('game result', function(msg) {
     console.log(socket.id + " played ");
     console.log(msg);
 
@@ -99,27 +106,47 @@ app.io.on('connection', function(socket){
     // TODO: evaluate results
 
     for (parameter in msg) {
-      console.log("\t - "+ parameter+": "+msg[parameter]);
+      console.log("\t - " + parameter + ": " + msg[parameter]);
     }
 
     app.io.emit('game result', msg);
   })
 
-  socket.on('game start', function(msg){
+  socket.on('game start', function(msg) {
     // start Timeout object
     if (!gameTimer) {
-      gameTimer = new Timeout(function gameFinish(){
-        console.log("GAME END!");
+      gameTimer = new Timer({
+        callback: function gameFinish() {
+          console.log("GAME END!");
 
-        // destroy timer
-        gameTimer = undefined;
+          // destroy timer
+          gameTimer = undefined;
 
-        app.io.emit('game end');
-      }, gameTurnTime);
+          app.io.emit('game end');
+        },
+        interval: {
+          hours: 0,
+          minutes: 0,
+          seconds: 1,
+          milliseconds: 0
+        },
+        duration: {
+          hours: 0,
+          minutes: 2,
+          seconds: 2,
+          milliseconds: 0
+        },
+        intervalCallback: function intervalCallback() {
+          app.io.emit('game status', {
+            time: gameTimer.getTimeLeftAsText()
+          });
+        },
+        debug: true
+      });
     }
 
     // check if game is already going
-    if (gameTimer.isCleared()){
+    if (gameTimer.isCleared()) {
       console.log("GAME ON!");
 
       letter = letterOptions[Math.floor(Math.random() * letterOptions.length)];
@@ -142,8 +169,8 @@ app.io.on('connection', function(socket){
   });
 
 
-  socket.on('game end', function(msg){
-    console.log("player "+socket.id+" played: "+msg);
+  socket.on('game end', function(msg) {
+    console.log("player " + socket.id + " played: " + msg);
     app.io.emit('game result', {
       results: msg
     });

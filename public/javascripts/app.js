@@ -5,8 +5,14 @@ var
 function displayMessage(messageDisplayNodeList, message, messageTypeClass) {
   var messageNode = document.createElement('li');
 
+  messageNode.classList.add('log__message');
+
   if (messageTypeClass) {
     messageNode.classList.add(messageTypeClass);
+  }
+  else {
+    // just a text message
+    messageNode.classList.add('log__message--text');
   }
 
   messageNode.innerText = message;
@@ -31,7 +37,7 @@ document.getElementById("chat-form").addEventListener('submit', function(e) {
 });
 
 socket.on('game start', function(msg) {
-  displayMessage(messageDisplayNode, "Game started with letter " + msg.letter, "alert");
+  displayMessage(messageDisplayNode, "Game started with letter " + msg.letter, "log__message--alert");
 });
 
 socket.on('game end', function(msg) {
@@ -49,6 +55,10 @@ socket.on('game end', function(msg) {
   console.log("sending data", playerData);
 
   socket.emit('game result', playerData);
+});
+
+socket.on('game status', function(msg){
+  document.getElementById("game-timer").innerText = msg.time;
 });
 
 // received a game result

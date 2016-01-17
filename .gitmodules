@@ -1,6 +1,6 @@
-[submodule "scripts/helpers"]
-	path = scripts/helpers
-	url = https://github.com/Painatalman/helpers-js
 [submodule "styles/helpers"]
 	path = styles/helpers
 	url = https://github.com/Painatalman/Mixins
+[submodule "src/timerjs"]
+	path = src/timerjs
+	url = https://github.com/Painatalman/timerjs.git

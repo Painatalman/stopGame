@@ -1,11 +1,46 @@
 extends layout
 
 block content
-  h1 #{title}
-  p Welcome to #{title}
-  ul#messages
-  form#chat-form
-    input#m(
-      autocomplete="off"
-    )
-    button Send
+  section.log
+    header.log__header
+      h1 #{title}
+    span#game-timer.game-timer
+    ul#messages.log__list
+  section.panel
+    form#chat-form.panel-form
+      input#m.panel-form__input.panel-form__input--message(
+        autocomplete="off"
+      )
+      button.panel-form__button Send
+    form#game-form.panel-form
+      input#name.panel-form__input--game.panel-form__input(
+        autocomplete="off"
+        data-game="name"
+        placeholder="name"
+      )
+      input#animal.panel-form__input--game.panel-form__input(
+        autocomplete="off"
+        data-game="animal"
+        placeholder="animal"
+      )
+      input#land.panel-form__input--game.panel-form__input(
+        autocomplete="off"
+        data-game="land"
+        placeholder="land"
+      )
+      input#brand.panel-form__input--game.panel-form__input(
+        autocomplete="off"
+        data-game="brand"
+        placeholder="brand"
+      )
+      input#color.panel-form__input--game.panel-form__input(
+        autocomplete="off"
+        data-game="color"
+        placeholder="color"
+      )
+      input#job.panel-form__input--game.panel-form__input(
+        autocomplete="off"
+        data-game="job"
+        placeholder="job"
+      )
+      button.panel-form__button.panel-form__button--game GAME ON!
