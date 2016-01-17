@@ -4,3 +4,6 @@
 [submodule "src/timerjs"]
 	path = src/timerjs
 	url = https://github.com/Painatalman/timerjs.git
+[submodule "src/helpers"]
+	path = src/helpers
+	url = https://github.com/Painatalman/helpers-js
