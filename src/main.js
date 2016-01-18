@@ -1,8 +1,11 @@
+'use strict';
+
+import React from 'react';
 var ReactDOM = require('react-dom');
 
-var App = require('./components/App');
+import StopApp from './components/StopApp.jsx';
 
 ReactDOM.render(
-  <App />,
+  <StopApp />,
   document.getElementById('app')
 );
