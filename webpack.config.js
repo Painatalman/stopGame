@@ -35,14 +35,22 @@ module.exports = {
           presets: ['es2015', 'react']
         }
       },
-      {
-        test: /\.css$/,
-        loader: "style!css"
-      },
+      // {
+      //   test: /\.css$/,
+      //   loader: "style!css"
+      // },
       // SASS
     {
-      test: /\.scss$/,
+      test: /\.s?css$/,
       loader: 'style!css!sass'
+    },
+    {
+      test: /\.(png|jpg)$/,
+      loader: 'url?limit=25000'
+    },
+    {
+      test: /\.woff$/,
+      loader: 'url?limit=100000'
     }
     ]
   },
