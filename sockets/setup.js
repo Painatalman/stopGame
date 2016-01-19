@@ -1,4 +1,4 @@
-var Timer = require('../src/timerjs/Timer');
+var Timer = require('../src/timerjs/timer');
 
 var
   gameTurnTime = {
