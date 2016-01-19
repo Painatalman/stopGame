@@ -4,9 +4,9 @@
   "private": true,
   "main": "start",
   "scripts": {
-    "start": "node app.js",
-    "start-debug": "node-debug app.js",
-    "start-debug-iron": "iron-node app.js",
+    "start": "node ./bin/www",
+    "start-debug": "node-debug ./bin/www",
+    "start-debug-iron": "iron-node ./bin/www",
     "build-webpack": "webpack",
     "webpack-prod": "NODE_ENV=production webpack",
     "dev": "webpack-dev-server --devtool eval --progress --colors --hot --content-base build",
