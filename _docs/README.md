@@ -4,7 +4,4 @@
   $ cd ./ && npm install
 
 ### run the app:
-  $ node app.js
-
-###
-  http://localhost:3000/game
+  $ npm start
