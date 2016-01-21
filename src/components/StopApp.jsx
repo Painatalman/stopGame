@@ -1,28 +1,30 @@
 'use strict';
 
-import React from 'react';
-import './StopApp.css';
+import React, {Component} from 'react';
+import LogScreen from './log';
+import './stopapp.css';
+import Panel from './panel';
 
-export default class StopApp extends React.Component {
+export default class StopApp extends Component {
   constructor(props) {
     super(props);
-
     // THIS WILL BE THE GLOBAL STATE
     this.state = {
       messages: [],
       filteredBy: "NONE",
       limit: 0
     }
-  }
-
+  }  
   resetMessages() {
         this.setState({messages: []});
   }
-
   render() {
-    // The second parameter is an object of attributes for the element (if any)
-    return <div className="StopApp-wrapper">
-      Something something Dark Side
-      </div>;
+    return (
+      <div id='StopApp' className="StopApp-wrapper">
+        StopApp
+        <LogScreen />
+        <Panel />
+      </div>
+    )
   }
-};
+}
