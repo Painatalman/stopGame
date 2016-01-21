@@ -12,7 +12,9 @@
     "dev": "webpack-dev-server --devtool eval --progress --colors --hot --content-base build",
     "debug-mocha": "iron-node node_modules/mocha/bin/_mocha",
     "debug-grunt": "iron-node node_modules/grunt-cli/bin/grunt build",
-    "debug-gulp": "iron-node node_modules/gulp/bin/gulp.js"
+    "debug-gulp": "iron-node node_modules/gulp/bin/gulp.js",
+    "styles-build": "node-sass styles/style.scss public/stylesheets/style.css",
+    "styles-watch": "nodemon -e scss -w public/styles -x 'npm run styles-build'"
   },
   "dependencies": {
     "body-parser": "~1.0.0",
@@ -23,6 +25,10 @@
     "morgan": "~1.0.0",
     "react": "0.14.6",
     "react-dom": "0.14.6",
+    "react-redux": "4.0.6",
+    "redux": "3.0.5",
+    "redux-logger": "2.3.2",
+    "redux-thunk": "1.0.3",
     "socket.io": "1.4.3",
     "static-favicon": "~1.0.0"
   },
@@ -31,9 +37,14 @@
     "babel-loader": "6.2.1",
     "babel-preset-es2015": "6.3.13",
     "babel-preset-react": "6.3.13",
+    "browserify": "13.0.0",
+    "clean-css": "3.4.9",
     "css-loader": "0.23.1",
     "file-loader": "0.8.5",
+    "node-sass": "3.4.2",
+    "nodemon": "1.8.1",
     "style-loader": "0.13.0",
+    "uglifyjs": "2.4.10",
     "url-loader": "0.5.7",
     "webpack": "1.12.11"
   }
