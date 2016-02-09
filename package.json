@@ -7,7 +7,9 @@
     "start": "node ./bin/www",
     "start-debug": "node-debug ./bin/www",
     "start-debug-iron": "iron-node ./bin/www",
+    "start-debug-devtool": "devtool ./bin/www",
     "build-webpack": "webpack",
+    "watch-webpack": "webpack --watch",
     "webpack-prod": "NODE_ENV=production webpack",
     "dev": "webpack-dev-server --devtool eval --progress --colors --hot --content-base build",
     "debug-mocha": "iron-node node_modules/mocha/bin/_mocha",
@@ -46,6 +48,7 @@
     "style-loader": "0.13.0",
     "uglifyjs": "2.4.10",
     "url-loader": "0.5.7",
-    "webpack": "1.12.11"
+    "webpack": "1.12.11",
+    "webpack-dev-server": "1.14.1"
   }
 }

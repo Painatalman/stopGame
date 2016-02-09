@@ -1,0 +1,86 @@
+/*
+
+  SassyFlags - v1.4
+  Daniel Thomas
+
+  Use however you want, no copyright here.
+
+  I'm currently using AWS to pull the flags you request, this
+  way you only pull the flags you want and don't have to
+  fill up your server with flags you dont care about. This
+  also means if my site goes down you don't lose your flag.
+
+  Thanks,
+  Dan. @_dthms
+
+*/
+
+//Default variables
+$flag-x: 25px !default;
+$flag-y: 15px !default;
+
+//Base
+.flag {
+  @extend .inline-block;
+  width: $flag-x; height: $flag-y;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  border: 0;
+
+  // Countrys
+  /* Austria */         &.AT, &.at { background-image: url('https://s3-us-west-2.amazonaws.com/layerful-flags/AT+(Austria)'); }
+  /* Belgium */         &.BE, &.be { background-image: url('https://s3-us-west-2.amazonaws.com/layerful-flags/BE+(Belgium)'); }
+  /* Brazil */          &.BR, &.br { background-image: url('https://s3-us-west-2.amazonaws.com/layerful-flags/Brazil.svg'); }
+  /* Switzerland */     &.CH, &.ch { background-image: url('https://s3-us-west-2.amazonaws.com/layerful-flags/CH+(Switzerland).svg'); }
+  /* Czech Republic */  &.CZ, &.cz { background-image: url('https://s3-us-west-2.amazonaws.com/layerful-flags/CZ+(czeh+republic).svg') }
+  /* Chile */           &.CL, &.cl { background-image: url('https://s3-us-west-2.amazonaws.com/layerful-flags/Chile.svg') }
+  /* Colombia */        &.CO, &.co { background-image: url('https://s3-us-west-2.amazonaws.com/layerful-flags/Colombia.svg') }
+  /* Costa Rica */      &.CR, &.cr { background-image: url('https://s3-us-west-2.amazonaws.com/layerful-flags/Costa+Rica.svg') }
+  /* Germany */         &.DE, &.de { background-image: url('https://s3-us-west-2.amazonaws.com/layerful-flags/DE+(germany).svg'); }
+  /* Denmark */         &.DK, &.dk { background-image: url('https://s3-us-west-2.amazonaws.com/layerful-flags/DK+(denmark).svg'); }
+  /* El Salavdor */     &.SV, &.sv { background-image: url('https://s3-us-west-2.amazonaws.com/layerful-flags/El+Salavdor.svg'); }
+  /* Spain */           &.ES, &.es { background-image: url('https://s3-us-west-2.amazonaws.com/layerful-flags/ES+(spain).svg'); }
+  /* Finland */         &.FI, &.fi { background-image: url('https://s3-us-west-2.amazonaws.com/layerful-flags/FI+(finland).svg'); }
+  /* France */          &.FR, &.fr { background-image: url('https://s3-us-west-2.amazonaws.com/layerful-flags/FR+(france).svg'); }
+  /* UK */              &.GB, &.gb { background-image: url('https://s3-us-west-2.amazonaws.com/layerful-flags/UK+(United+Kingdom).svg'); }
+  /* Hungary */         &.HU, &.hu { background-image: url('https://s3-us-west-2.amazonaws.com/layerful-flags/HU+(Hungary)'); }
+  /* Iceland */         &.IS, &.is { background-image: url('https://s3-us-west-2.amazonaws.com/layerful-flags/IS+(Iceland).svg'); }
+  /* Italy */           &.IT, &.it { background-image: url('https://s3-us-west-2.amazonaws.com/layerful-flags/IT+(Italy)'); }
+  /* Lithuania */       &.LT, &.lt { background-image: url('https://s3-us-west-2.amazonaws.com/layerful-flags/LT+(Lithuania)'); }
+  /* Luxembourg */      &.LU, &.lu { background-image: url('https://s3-us-west-2.amazonaws.com/layerful-flags/LU+(Luxembough)'); }
+  /* Latvia */          &.LV, &.lv { background-image: url('https://s3-us-west-2.amazonaws.com/layerful-flags/LV+(lativa).svg'); }
+  /* Malta */           &.MT, &.mt { background-image: url('https://s3-us-west-2.amazonaws.com/layerful-flags/MT+(Malta).svg'); }
+  /* Norway */          &.NO, &.no { background-image: url('https://s3-us-west-2.amazonaws.com/layerful-flags/NO+(Norway).svg'); }
+  /* Poland */          &.PL, &.pl { background-image: url('https://s3-us-west-2.amazonaws.com/layerful-flags/PL+(Poland).svg'); }
+  /* Peru */            &.PE, &.pe { background-image: url('https://s3-us-west-2.amazonaws.com/layerful-flags/Peru.svg'); }
+  /* Puerto Rico */     &.PR, &.pr { background-image: url('https://s3-us-west-2.amazonaws.com/layerful-flags/Puerto+Rico.svg'); }
+  /* Russia */          &.RU, &.ru { background-image: url('https://s3-us-west-2.amazonaws.com/layerful-flags/RU+(russia).svg'); }
+  /* Sweden */          &.SE, &.se { background-image: url('https://s3-us-west-2.amazonaws.com/layerful-flags/SE+(Sweden).svg'); }
+  /* US */              &.US, &.us { background-image: url('https://s3-us-west-2.amazonaws.com/layerful-flags/US+(United+States+of+America).svg'); }
+
+  // Loading animation
+  @include animation(flag-loader linear infinite 1.5s);
+}
+
+// Cross browser inline-block (damn you css)
+.inline-block {
+  display: -moz-inline-stack;
+  display: inline-block;
+  vertical-align: top;
+  zoom: 1;
+  *display: inline;
+}
+
+// Animations
+@-webkit-keyframes flag-loader {
+  0%   {background-color: #f5f5f5;}
+  50%  {background-color: #e7e7e7;}
+  100% {background-color: #f5f5f5;}
+}
+
+@keyframes flag-loader {
+  0%   {background-color: #f5f5f5;}
+  50%  {background-color: #e7e7e7;}
+  100% {background-color: #f5f5f5;}
+}

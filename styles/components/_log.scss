@@ -1,8 +1,9 @@
-.log 
+.log {
       &__list { list-style-type: none; margin: 0; padding: 0; }
       &__message { padding: 5px 10px; }
       &__message--text:nth-child(odd) { background: #eee; }
       &__message--alert {
         background: tomato;
         color: white;
+      }
       }

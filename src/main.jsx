@@ -1,21 +1,12 @@
-import React from 'react'
-import { render } from 'react-dom'
-import { Provider } from 'react-redux'
-import { createStore } from 'redux'
-import logger from 'redux-logger'
-import thunk from 'redux-thunk'
+import React from 'react';
+import { render } from 'react-dom';
 
-import StopApp from './components/StopApp.jsx'
+import StopApp from './components/StopApp.jsx';;
 
-const middleware = process.env.NODE_ENV === 'production' ?
-  [ thunk ] :
-  [ thunk, logger() ]
-const createStoreWithMiddleware = applyMiddleware(...middleware)(createStore)
-const store = createStoreWithMiddleware(reducer)
+// TODO: try changing to let or even const later on
+var socket = io();
 
 render(
-  <Provider store={store}>
-  <StopApp />
-  </Provider>,
+  <StopApp socket={socket}/>,
   document.getElementById('app')
 );

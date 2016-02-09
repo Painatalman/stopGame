@@ -12,7 +12,7 @@ module.exports = {
   debug: true,
   entry: [
     // 'webpack/hot/dev-server',
-    './src/main.js',
+    './src/main.jsx',
   ],
   output: {
     path: __dirname + "/public/javascripts",

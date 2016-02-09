@@ -448,19 +448,18 @@
   padding: 0;
   box-sizing: border-box; }
 
-.log
-__list {
+.log__list {
   list-style-type: none;
   margin: 0;
   padding: 0; }
 
-__message {
+.log__message {
   padding: 5px 10px; }
 
-__message--text:nth-child(odd) {
+.log__message--text:nth-child(odd) {
   background: #eee; }
 
-__message--alert {
+.log__message--alert {
   background: tomato;
   color: white; }
 
